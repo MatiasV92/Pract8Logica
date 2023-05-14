@@ -1,9 +1,14 @@
 nand:: Bool->Bool->Bool
+nand True True = False
+nand _ _ = True
 
 -- ---------------------------------------------------- 
 -- maj retorna True sii al menos 2 argumentos son True.
 -- ----------------------------------------------------
 maj :: Bool −> Bool −> Bool −> Bool
+maj True True _ = Ture
+maj True _ True = Ture
+maj _ True True = Ture
 
 
 -- ---------------------------------------------------- 
@@ -18,9 +23,12 @@ maj :: Bool −> Bool −> Bool −> Bool
 --		paraTodo [0,2,4,6] [2,2,4,4,4,5,6] even  
 --		retorna True.
 -- ----------------------------------------------------
+
 paraTodo :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
-
-
+paraTodo [] [] f = False
+paraTodo [] ys f = False
+paraTodo xs [] f = False
+paraTodo (x:xs) (y:ys) f = and (foldl (&&) [map f x xs ++ map f x ys])
 
 -- ----------------------------------------------------
 -- La lista [Int] de paraTodo representa las posiciones 
@@ -31,6 +39,10 @@ paraTodo :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
 --		retorna True.
 -- ----------------------------------------------------
 existe :: [Int] -> [a] -> (Int -> [a] -> Bool)-> Bool
+paraTodo [] [] f = Falso
+paraTodo [] ys f = False
+paraTodo xs [] f = False
+paraTodo xs ys f = or (foldl (&&) [(map f x xs) ++ (map f x ys)])
 
 
 
